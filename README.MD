@@ -19,13 +19,13 @@ Anki是很适合已经学习过的知识进行复习的，作者本人使用好�
 
 ## 安装
 1. 启动Anki
-2. 在菜单上一次选择 *工具 > 附加组件*，点击 \[附加组件\]， 然后输入代码 [53580332](https://ankiweb.net/shared/info/53580332)
+2. 在菜单上一次选择 *工具 > 附加组件*，点击 /[附加组件/]， 然后输入代码 [53580332](https://ankiweb.net/shared/info/53580332)
 3. 重启Anki
 ## 菜单
 安装成功后，“有道柯林斯”菜单就会出现在菜单栏了：
 <br>
 
-![](.\data\screenshots\menu.png)
+![](https://raw.githubusercontent.com/upday7/YoudaoCollins/master/data/screenshots/menu.png)
 
 
 ### 关于Anki Deck
@@ -43,12 +43,12 @@ Anki是很适合已经学习过的知识进行复习的，作者本人使用好�
 - （第一条）柯林斯例句原文
 - （第一条）柯林斯例句翻译
 
-    ![](.\data\screenshots\fields.png)
+    ![](https://raw.githubusercontent.com/upday7/YoudaoCollins/master/data/screenshots/fields.png)
 
 #### 笔记类型模板
 本插件提供一套默认模板以供大家使用，当第一次导入单词后，模板会被导入。
 
-![](.\data\screenshots\card.png)
+![](https://raw.githubusercontent.com/upday7/YoudaoCollins/master/data/screenshots/card.png)
 
 ### 导入
 #### ** 选择源数据
@@ -72,7 +72,7 @@ Anki是很适合已经学习过的知识进行复习的，作者本人使用好�
 - 分隔符为Tab
 - 勾选允许HTML
 
-![](.\data\screenshots\import.png)
+![](https://raw.githubusercontent.com/upday7/YoudaoCollins/master/data/screenshots/import.png)
 
 
 ## 第三方
