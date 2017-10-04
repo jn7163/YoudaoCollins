@@ -42,9 +42,9 @@ class ConfigDialog(QDialog, Ui_dlg_config):
     def on_reset_imported_clicked(self):
         con = sqlite3.connect(settings.imported_db_path)
         try:
-            con.cursor().execute("DELETE FROM table_imported_words")
+            con.cursor().execute("DELETE FROM imported_words")
         except sqlite3.OperationalError:
             pass
-
+        con.commit()
         con.close()
         QMessageBox.information(mw, "重置", "已经清理.")

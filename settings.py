@@ -4,35 +4,30 @@ this_addon_name = os.path.dirname(__file__)
 
 
 class _settings:
-    def __init__(self):
-        pass
-
-    def _ensure_all_folder_properties(self):
-        for property_folder in dir(self):
-            if property_folder.endswith("_folder"):
-                property_value = getattr(self, property_folder)
-                if os.path.isdir(property_value):
-                    os.makedirs(property_value)
+    def _ensure_dir(self, name):
+        if not os.path.isdir(name):
+            os.makedirs(name)
+        return name
 
     @property
     def profile_folder(self):
-        return mw.pm.profileFolder()
+        return self._ensure_dir(mw.pm.profileFolder())
 
     @property
     def addons_folder(self):
-        return mw.addonManager.addonsFolder()
+        return self._ensure_dir(mw.addonManager.addonsFolder())
 
     @property
     def media_folder(self):
-        return os.path.join(self.profile_folder, "collection.media")
+        return self._ensure_dir(os.path.join(self.profile_folder, "collection.media"))
 
     @property
     def this_addon_folder(self):
-        return mw.addonManager.addonsFolder(this_addon_name)
+        return self._ensure_dir(mw.addonManager.addonsFolder(this_addon_name))
 
     @property
     def user_files_folder(self):
-        return os.path.join(self.this_addon_folder, "user_files")
+        return self._ensure_dir(os.path.join(self.this_addon_folder, "user_files"))
 
     @property
     def imported_db_path(self):
