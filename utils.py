@@ -1,5 +1,13 @@
+import shutil
+
 from PyQt5.QtWidgets import QAction
 from aqt import mw, QKeySequence, QMenu
+
+from .settings import settings
+
+
+def clean_up_user_files():
+    shutil.rmtree(settings.user_files_folder, ignore_errors=True)
 
 
 def addMenu(name):

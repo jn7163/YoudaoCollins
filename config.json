@@ -1,4 +1,5 @@
 {
   "QueryWordOnce": true,
-  "WordVoiceType": "collins"
+  "WordVoiceType": "collins",
+  "DefaultSourceTag": "默认"
 }

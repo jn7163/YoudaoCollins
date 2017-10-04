@@ -73,5 +73,13 @@ class _addon_config:
     def WordVoiceType(self, value):
         self.config['WordVoiceType'] = str(value).strip().lower()
 
+    @property
+    def DefaultSourceTag(self):
+        return str(self.config["DefaultSourceTag"]).strip()
+
+    @DefaultSourceTag.setter
+    def DefaultSourceTag(self, value):
+        self.config["DefaultSourceTag"] = str(value).strip()
+
 
 addon_config = _addon_config()

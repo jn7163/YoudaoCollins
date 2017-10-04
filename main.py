@@ -1,17 +1,19 @@
 # import the main window object (mw) from aqt
+import random
 import warnings
 
 from anki.hooks import addHook
 from aqt import mw
 from aqt.qt import *
-from .ui import ConfigDialog
 
 from .Helpers import Kindle
 from .Helpers.ToAnkiTxt import GetWordsFromText
 from .Helpers.Tools import GetDesktopPath
 from .Helpers.Youdao import Youdao
+from .settings import addon_config
+from .ui import ConfigDialog
 from .ui.DownloadYoudao import DownloadYoudao
-from .utils import addMenu, addMenuItem, addMenuSeparator
+from .utils import addMenu, addMenuItem, addMenuSeparator, clean_up_user_files
 
 warnings.simplefilter("ignore")
 
@@ -38,8 +40,7 @@ class Manager:
     def onProfileLoaded(self):
         self.setupAdditionalMenu()
 
-        # import dec template
-        pass
+        clean_up_user_files()
 
     def ShowConfigDialog(self):
         dlg = ConfigDialog.ConfigDialog()
@@ -65,8 +66,15 @@ class Manager:
             return
         words_data = GetWordsFromText(txt_file)
 
-        youdao = Youdao("Others")
-        youdao.query_youdao_data(words_data, "TextImport.txt")
+        source_tag, accepted = QInputDialog.getText(mw, "标签", "请输入【来源】标签:", QLineEdit.Normal,
+                                                    addon_config.DefaultSourceTag)
+        if accepted:
+            if str(source_tag).strip():
+                addon_config.DefaultSourceTag = source_tag
+                addon_config.SaveConfig()
+
+                youdao = Youdao(source_tag)
+                youdao.query_youdao_data(words_data, "TextImport_{}.txt".format(random.randint(0, 100)))
 
     def ImportKindleVocab(self):
         kindle = Kindle.Kindle()
@@ -79,4 +87,5 @@ class Manager:
 
         if QMessageBox.question(mw, "从Kindle导入", "总共{}个生词，确认导入吗?".format(
                 words_data.__len__())) == QMessageBox.Yes:
-            youdao.query_youdao_data({stem: usage for stem, usage in words_data}, "KindleImport.txt")
+            youdao.query_youdao_data({stem: usage for stem, usage in words_data},
+                                     "KindleImport_{}.txt".format(random.randint(0, 100)))

@@ -1,3 +1,5 @@
+import random
+
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import QDialog
 
@@ -34,4 +36,4 @@ class DownloadYoudao(QDialog, Ui_Dialog):
         youdao = Youdao.Youdao("有道单词本")
         youdao.login(self.acct, self.pwd)
         words = youdao.GetWordList()
-        youdao.query_youdao_data(words, "YoudaoWordlist.txt")
+        youdao.query_youdao_data(words, "YoudaoWordlist_{}.txt".format(random.randint(0, 100)))
