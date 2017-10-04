@@ -1,6 +1,8 @@
 
 
 # 有道柯林斯
+[![Code Climate](https://codeclimate.com/github/upday7/YoudaoCollins/badges/gpa.svg)](https://codeclimate.com/github/upday7/YoudaoCollins)
+
 Anki是很适合已经学习过的知识进行复习的，作者本人使用好几个英语工具选单词，这个插件就是用来导入单词到Anki的。
 
 本插件使用了有道的Collins数据，为了尽量是卡片和记忆数据简单明了，插件仅仅抓取柯林斯的第一个英英释义，和第一个例句以及柯林斯星级。（第一个解释是主要的）
