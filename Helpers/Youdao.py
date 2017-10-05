@@ -1,7 +1,7 @@
 import os
 import re
 import sqlite3
-from ..settings import settings, addon_config
+
 import bs4
 import requests
 from aqt import mw, QEventLoop, QMessageBox
@@ -9,13 +9,16 @@ from aqt.importing import importFile
 
 from .ToAnkiTxt import TransToAnkiText
 from ._WordlistSession import _WordListRequester
+from ..Helpers.Importer import ImportToAnki
+from ..settings import settings, addon_config
 
 
 class Youdao(_WordListRequester):
-    def __init__(self, source_tag=""):
+    def __init__(self, import_deck_name='', source_tag=""):
         super(Youdao, self).__init__()
         self.translator = TransToAnkiText()
         self.source_tag = source_tag
+        self.import_deck_name = import_deck_name
 
         self.youdao_downloaded = 0
         self.total_for_processing = 0
@@ -56,7 +59,7 @@ class Youdao(_WordListRequester):
     def ImportToAnki(self, file):
         mw.progress.finish()
         if os.path.isfile(file):
-            importFile(mw, file)
+            ImportToAnki("有道柯林斯", self.import_deck_name, file=file)
         else:
             QMessageBox.information(mw, "导入", "没有新的生词导入")
         self.youdao_downloaded = 0

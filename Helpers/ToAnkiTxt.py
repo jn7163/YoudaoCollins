@@ -81,7 +81,7 @@ class TransToAnkiText(QObject):
         :return:
         """
         if isinstance(input, str) and os.path.isfile(input):
-            with open(input, encoding="utf-8") as fr:
+            with open(input, encoding="utf_8_sig") as fr:
                 total_lines = fr.readlines()
         elif isinstance(input, dict):
             total_lines = list(input.keys())
@@ -121,7 +121,7 @@ def GetWordsFromText(input_txt):
     :return:  {word: the left}
     """
     rDict = {}
-    with open(input_txt, encoding='utf-8') as f:
+    with open(input_txt, encoding='utf-8-sig') as f:
         for line in f.readlines():
             line = line.strip()
             pattern = "\w+\s\((\w+)\)(.+)"

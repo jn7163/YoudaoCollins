@@ -8,11 +8,12 @@ from ..Helpers import Youdao
 
 
 class DownloadYoudao(QDialog, Ui_Dialog):
-    def __init__(self, parent=None):
+    def __init__(self, import_deck_name, parent=None):
         super(DownloadYoudao, self).__init__(parent)
         self.setupUi(self)
         self.read_account_info()
         self.parent = parent
+        self.import_deck_name = import_deck_name
 
         self.downloaded = 0
         self.total = 0
@@ -33,7 +34,7 @@ class DownloadYoudao(QDialog, Ui_Dialog):
 
     def ConvertYoudaoWordList(self):
         self.hide()
-        youdao = Youdao.Youdao("有道单词本")
+        youdao = Youdao.Youdao(self.import_deck_name, "有道单词本")
         youdao.login(self.acct, self.pwd)
         words = youdao.GetWordList()
         youdao.query_youdao_data(words, "YoudaoWordlist_{}.txt".format(random.randint(0, 100)))
