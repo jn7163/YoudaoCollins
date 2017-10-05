@@ -31,12 +31,13 @@ def ImportToAnki(model_name, import_to_deck, *args, **kwargs):
     importer.delimiter = "\t"
     importer.importMode = 0
     importer.allowHTML = True
+    importer.model = model
 
     did = mw.col.decks.id(import_to_deck)
     mw.col.conf['curDeck'] = did
 
     mw.col.decks.select(did)
-    importer.mapping = ['单词']
+    importer.mapping = [kwargs.get("first")]
     importer.run()
     mw.reset()
     txt = _("Importing complete.") + "\n"

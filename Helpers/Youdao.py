@@ -59,7 +59,7 @@ class Youdao(_WordListRequester):
     def ImportToAnki(self, file):
         mw.progress.finish()
         if os.path.isfile(file):
-            ImportToAnki("有道柯林斯", self.import_deck_name, file=file)
+            ImportToAnki("有道柯林斯", self.import_deck_name, file=file, first='单词')
         else:
             QMessageBox.information(mw, "导入", "没有新的生词导入")
         self.youdao_downloaded = 0
